@@ -82,7 +82,8 @@ just start:django  # Install and start Django
 | `main → go` | Scaffolded with a basic Go app | `just *:go` |
 | `main → django` | Scaffolded with a basic Django app | `just *:django` |
 | `main → node` | Scaffolded with a basic Node.js app | `just *:node` |
-| `main → db` | Scaffolded with a basic PostgreSQL database | `just *:db` |
+| `main → postgres` | Scaffolded with a basic PostgreSQL database | `just *:postgres` |
+| `main → mongo` | Scaffolded with a basic MongoDB database | `just *:mongo` |
 | `main → LLM` | Scaffolded with a basic LLM app | `just *:llm` |
 
 
