@@ -1,15 +1,18 @@
 # Git-related commands
 
-# Rebase a single branch onto main
+# Rebase a branch as a sub-branch of main
 rebase branch:
     #!/usr/bin/env bash
     current_branch=$(git branch --show-current)
+    echo "Fetching latest main..."
     git fetch origin main:main
-    echo "Rebasing {{branch}} onto main..."
-    git checkout {{branch}}
-    git rebase main || echo "Rebase failed for {{branch}}, please resolve conflicts and continue manually"
-    git checkout $current_branch
-    echo "Completed rebasing {{branch}}. You may need to force push the changes with 'git push -f origin {{branch}}'"
+    echo "Checking out main..."
+    git checkout main
+    git pull origin main
+    echo "Creating/updating {{branch}} as a sub-branch from current main..."
+    git checkout -B {{branch}} main
+    echo "Your branch {{branch}} is now based on latest main"
+    echo "You may need to force push the changes with 'git push -f origin {{branch}}'"
 
 # Rebase all local branches onto main
 rebase-all:
