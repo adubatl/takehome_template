@@ -23,52 +23,66 @@ Each sub-branch is designed to be **composable via merge**.
   git checkout -b <username>/<company-name>/main
   ```
 
+### 🛠️ Development Commands
+
+Each framework supports these core commands:
+```bash
+just dev:<framework>     # Start development server
+just docker:<framework>  # Run in Docker
+just install:<framework> # Install dependencies
+just start:<framework>   # Quick start: install + dev
+```
+
+For example:
+```bash
+just dev:node      # Start Node.js server
+just docker:react  # Run React app in Docker
+just start:django  # Install and start Django
+```
 
 ### 🔍 Examples
 
 - If you have a problem with a few algo/DSA challenges, branch off main and get to work!
 
-- If you need a backend, database, or a particular frontend, you can start on any of those branches.
+- If you need a backend, database, or a particular frontend, merge in the branch and start coding:
   ```bash
-  # Using git directly
-  git checkout react
-  
-  # Or using just command
+  # Add React frontend
   just add react
+  just start:react
+  
+  # Add Node.js backend
+  just add node
+  just start:node
   ```
 
-- For showcasing CRUD skills in a frontend-focused takehome, start with your frontend branch, then merge in your preferred backend.
+- For full-stack applications, compose multiple branches:
   ```bash
-  # Using git
-  git checkout react
-  git merge django
-  
-  # Or using just
+  # React frontend + Node.js backend
   just add react
-  just add django
+  just add node
+  just start:react  # Start frontend
+  just start:node   # Start backend
   ```
 
-- For backend-focused or database-heavy takehomes, grab all three branches or just the backend and database ones.
+- For backend-focused or database-heavy takehomes:
   ```bash
-  # Full stack setup with just
-  just add django
+  # Node.js + Database setup
+  just add node
   just add db
-  
-  # Or with git
-  git checkout django
-  git merge db
+  just start:node
+  just start:db
   ```
 
 ## 🌿 Available Branches
 
-| Branch | Description |
-|--------|-------------|
-| `main → react` | Scaffolded with a basic React app |
-| `main → vue` | Scaffolded with a basic Vue app |
-| `main → go` | Scaffolded with a basic Go app |
-| `main → django` | Scaffolded with a basic Django app |
-| `main → node` | Scaffolded with a basic Node app |
-| `main → db` | Scaffolded with a basic PostgreSQL database |
-| `main → LLM` | Scaffolded with a basic LLM app |
+| Branch | Description | Commands |
+|--------|-------------|----------|
+| `main → react` | Scaffolded with a basic React app | `just *:react` |
+| `main → vue` | Scaffolded with a basic Vue app | `just *:vue` |
+| `main → go` | Scaffolded with a basic Go app | `just *:go` |
+| `main → django` | Scaffolded with a basic Django app | `just *:django` |
+| `main → node` | Scaffolded with a basic Node.js app | `just *:node` |
+| `main → db` | Scaffolded with a basic PostgreSQL database | `just *:db` |
+| `main → LLM` | Scaffolded with a basic LLM app | `just *:llm` |
 
 
