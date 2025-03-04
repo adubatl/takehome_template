@@ -31,4 +31,4 @@ install framework: (_route "install" framework)
 start framework: (_route "start" framework)
 
 # Import framework scripts
-!include scripts/*.just 
+import? "scripts/*.just" 
