@@ -10,7 +10,7 @@ The main branch is a general template with just a README and a couple of files f
 
 Each sub-branch is designed to be **composable via merge**.
 
-### 🔑 Setup
+### ⚙️ Setup
 
 - Fork the repo for yourself in the web or cli, then clone it.
   ```bash
@@ -30,29 +30,31 @@ Each sub-branch is designed to be **composable via merge**.
 
 - If you need a backend, database, or a particular frontend, you can start on any of those branches.
   ```bash
-  # For a backend
-  git checkout django
-  
-  # For a database
-  git checkout db
-  
-  # For a frontend
+  # Using git directly
   git checkout react
+  
+  # Or using just command
+  just add react
   ```
 
 - For showcasing CRUD skills in a frontend-focused takehome, start with your frontend branch, then merge in your preferred backend.
   ```bash
+  # Using git
   git checkout react
   git merge django
+  
+  # Or using just
+  just add react
+  just add django
   ```
 
 - For backend-focused or database-heavy takehomes, grab all three branches or just the backend and database ones.
   ```bash
-  # Full stack setup
-  git checkout django
-  git merge db
+  # Full stack setup with just
+  just add django
+  just add db
   
-  # Or just backend + database
+  # Or with git
   git checkout django
   git merge db
   ```
@@ -65,6 +67,7 @@ Each sub-branch is designed to be **composable via merge**.
 | `main → vue` | Scaffolded with a basic Vue app |
 | `main → go` | Scaffolded with a basic Go app |
 | `main → django` | Scaffolded with a basic Django app |
+| `main → node` | Scaffolded with a basic Node app |
 | `main → db` | Scaffolded with a basic PostgreSQL database |
 | `main → LLM` | Scaffolded with a basic LLM app |
 
