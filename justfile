@@ -12,6 +12,10 @@ add branch:
     git fetch origin {{branch}}:{{branch}} || echo "Branch {{branch}} not found, skipping fetch"
     git merge {{branch}} --allow-unrelated-histories || echo "Merge failed, please resolve conflicts"
 
+# Rebase a single branch onto main
+rebase branch:
+    @just --justfile scripts/git.just rebase {{branch}}
+
 # Rebase all branches onto main
 rebase-all:
     @just --justfile scripts/git.just rebase-all
