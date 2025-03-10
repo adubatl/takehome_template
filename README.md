@@ -53,7 +53,7 @@ Use the OMDb API to retrieve information about the movie specified
 by movie_title
 - Set up `/src/services/omdb.ts` for flexibility for additional movie stuff
 - Added error email + very crappy fuzzy search
-- Added error handling for omdb being down
+- Added error handling for omdb being down (did not test)
 
 #### 📧 Send Email
 Utilize Resend’s API to send an email to recipient_email containing the
@@ -61,13 +61,12 @@ movie’s plot summary.
 
 - Set up `/src/services/resend.ts` for emails
 - Used straight up HTML (but I've used react email before)
-- Added error handling for resend being down
+- Added error handling for resend being down (did not test)
 
 #### ⚠️ Error Handling
 Implement appropriate error handling for scenarios such as the movie
 not being found or failure to send the email.
 - Added error email and a quick attempt at fuzzy search so something was handled
-- Added error handling for resend being down
 
 #### 🔄 Configure Inngest
 Maximize the chances of successfully sending the email to the
