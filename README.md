@@ -1,89 +1,85 @@
-# 🚀 Takehome Template
+# 🎬 Meadow Movies
 
-> The repo no one should need, but everyone does.
+> *Comically unrelated to our actual business* 😄
 
-## 📋 How to Use It
+Hey Clem! 👋 Hope your day is going well. I kept this pretty barebones, cURL to test
+but I could definitely slap an FE on it if you'd like, or do other things.
 
-This repo has a variety of templates for different takehome formats.
+## 🚀 Setup Instructions
 
-The main branch is a general template with just a README and a couple of files for languages you might use.
-
-Each sub-branch is designed to be **composable via merge**.
-
-### ⚙️ Setup
-
-- Fork the repo for yourself in the web or cli, then clone it.
-  ```bash
-  git clone https://github.com/<username>/takehome_template.git
-  cd takehome_template
-  ```
-
-- Now set up a branch for your takehome. Follow your heart here, or try this format.
-  ```bash
-  git checkout -b <username>/<company-name>/main
-  ```
-
-### 🛠️ Development Commands
-
-Each framework supports these core commands:
+### 1. Clone the repo
 ```bash
-just dev:<framework>     # Start development server
-just docker:<framework>  # Run in Docker
-just install:<framework> # Install dependencies
-just start:<framework>   # Quick start: install + dev
+git@github.com:adubatl/takehome_template.git
 ```
 
-For example:
+### 2. Set the environment variables
 ```bash
-just dev:node      # Start Node.js server
-just docker:react  # Run React app in Docker
-just start:django  # Install and start Django
+# in node_server/.env
+INNGEST_EVENT_KEY=
+INNGEST_SIGNING_KEY=
+RESEND_API_KEY=
+OMDB_API_KEY=
 ```
 
-### 🔍 Examples
+### 3. Run the backend server
+```bash
+just dev node
+```
 
-- If you have a problem with a few algo/DSA challenges, branch off main and get to work!
+### 4. Run the Inngest server
+```bash
+npx inngest-cli@latest dev
+```
 
-- If you need a backend, database, or a particular frontend, merge in the branch and start coding:
-  ```bash
-  # Add React frontend
-  just add react
-  just start:react
-  
-  # Add Node.js backend
-  just add node
-  just start:node
-  ```
+### 5. Test the endpoint
+```bash
+curl -X POST http://localhost:3000/api/movies/watch \
+-H "Content-Type: application/json" \
+-d '{
+    "title": "the materix",
+    "userEmail": "clem@hisrealemailforsure.com"
+}'
+```
 
-- For full-stack applications, compose multiple branches:
-  ```bash
-  # React frontend + Node.js backend
-  just add react
-  just add node
-  just start:react  # Start frontend
-  just start:node   # Start backend
-  ```
+## 📝 Implementation Details
 
-- For backend-focused or database-heavy takehomes:
-  ```bash
-  # Node.js + Database setup
-  just add node
-  just add db
-  just start:node
-  just start:db
-  ```
+### Requirements Fulfilled
 
-## 🌿 Available Branches
+#### 🎥 Fetch Movie Data
+Use the OMDb API to retrieve information about the movie specified
+by movie_title
+- Set up `/src/services/omdb.ts` for flexibility for additional movie stuff
+- Added error email + very crappy fuzzy search
+- Added error handling for omdb being down
 
-| Branch | Description | Commands |
-|--------|-------------|----------|
-| `main → react` | Scaffolded with a basic React app | `just *:react` |
-| `main → vue` | Scaffolded with a basic Vue app | `just *:vue` |
-| `main → go` | Scaffolded with a basic Go app | `just *:go` |
-| `main → django` | Scaffolded with a basic Django app | `just *:django` |
-| `main → node` | Scaffolded with a basic Node.js app | `just *:node` |
-| `main → postgres` | Scaffolded with a basic PostgreSQL database | `just *:postgres` |
-| `main → mongo` | Scaffolded with a basic MongoDB database | `just *:mongo` |
-| `main → LLM` | Scaffolded with a basic LLM app | `just *:llm` |
+#### 📧 Send Email
+Utilize Resend’s API to send an email to recipient_email containing the
+movie’s plot summary.
+
+- Set up `/src/services/resend.ts` for emails
+- Used straight up HTML (but I've used react email before)
+- Added error handling for resend being down
+
+#### ⚠️ Error Handling
+Implement appropriate error handling for scenarios such as the movie
+not being found or failure to send the email.
+- Added error email and a quick attempt at fuzzy search so something was handled
+- Added error handling for resend being down
+
+#### 🔄 Configure Inngest
+Maximize the chances of successfully sending the email to the
+recipient.
+- Interpreted this as "send a pass or fail email" because it was easy
+- Nothing is more maximized than 100% of the time sending an email, unless ofc servers are down.
+- I'm not implementing a fallback email service for a takehome, but if the business demanded it in reality, we could.
+- Ensures users always get some kind of response
 
 
+Improvements:
+- Better email styling.
+- A better fallback than a terrible fuzzy search
+- Re-imagine as a CLI tool, a full application, a phone app etc. Each version of this would use the same endpoints but have flushed out user interactions.
+- We could cache movies requests.
+- Handle "You already watched this, do you want to add it again?" No idea what that flow is or if its a real need.
+- I changed the data structure of the event to match TS syntax, but it would be trivial to change it back to the original.
+- Be intentional about debug messages, vs live system messages

@@ -13,6 +13,7 @@ console.log('\n🚀 Starting server...');
 console.log('\n📝 Environment Variables Check:');
 console.log('- RESEND_API_KEY:', !!process.env.RESEND_API_KEY ? '✅ Found' : '❌ Missing');
 console.log('- OMDB_API_KEY:', !!process.env.OMDB_API_KEY ? '✅ Found' : '❌ Missing');
+console.log('- INNGEST_SIGNING_KEY:', !!process.env.INNGEST_SIGNING_KEY ? '✅ Found' : '❌ Missing');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -25,7 +26,8 @@ app.get('/health', (_req: Request, res: Response) => {
         status: 'ok',
         env: {
             resend: !!process.env.RESEND_API_KEY,
-            omdb: !!process.env.OMDB_API_KEY
+            omdb: !!process.env.OMDB_API_KEY,
+            inngest: !!process.env.INNGEST_SIGNING_KEY
         }
     });
 });
@@ -36,6 +38,7 @@ app.use('/api/movies', movieRoutes);
 app.use('/api/inngest', serve({
     client: inngestClient,
     functions: inngestFunctions,
+    signingKey: process.env.INNGEST_SIGNING_KEY
 }));
 
 app.listen(port, () => {

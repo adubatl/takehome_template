@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
 import { searchMovies, getMovieDetails } from '../services/omdb';
-import { inngestClient } from '../services/inngest';
+import { sendMovieWatchedEvent } from '../services/inngest';
 
 const router = Router();
 
@@ -71,12 +71,11 @@ router.post('/watch', async (req: Request, res: Response) => {
         }
 
         console.log(`📽️ Triggering movie.watched event for "${title}" to ${userEmail}`);
-        await inngestClient.send({
-            name: 'movie.watched',
-            data: {
-                title,
-                userEmail
-            }
+
+        // Send the event using the typed function
+        await sendMovieWatchedEvent({
+            title,
+            userEmail
         });
 
         console.log('✅ Successfully triggered movie.watched event');
@@ -86,7 +85,7 @@ router.post('/watch', async (req: Request, res: Response) => {
             userEmail
         });
     } catch (error) {
-        console.error(`❌ Error triggering movie.watched event: ${error}`);
+        console.error(`❌ Error triggering movie.watched event:`, error);
         res.status(500).json({ error: 'Failed to trigger movie watched event' });
     }
 });
