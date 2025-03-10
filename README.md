@@ -9,7 +9,8 @@ but I could definitely slap an FE on it if you'd like, or do other things.
 
 ### 1. Clone the repo
 ```bash
-git@github.com:adubatl/takehome_template.git
+# this is my template repo, arguably a cool project too, but maybe its trash :shrug:
+git clone git@github.com:adubatl/takehome_template.git && cd takehome_template && git checkout adubatl/meadow_movies
 ```
 
 ### 2. Set the environment variables
@@ -71,6 +72,7 @@ not being found or failure to send the email.
 #### 🔄 Configure Inngest
 Maximize the chances of successfully sending the email to the
 recipient.
+- Set up `/src/services/inngest.ts` for the events and functions
 - Interpreted this as "send a pass or fail email" because it was easy
 - Nothing is more maximized than 100% of the time sending an email, unless ofc servers are down.
 - I'm not implementing a fallback email service for a takehome, but if the business demanded it in reality, we could.
