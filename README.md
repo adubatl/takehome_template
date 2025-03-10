@@ -24,10 +24,13 @@ OMDB_API_KEY=
 ### 3. Run the backend server
 ```bash
 just dev node
+# if you don't have just you can do `npm run dev` from the node_server directory
 ```
 
 ### 4. Run the Inngest server
 ```bash
+# I did not look into bundling this with the node server
+# but I bet you could get it all under one startup command.
 npx inngest-cli@latest dev
 ```
 
