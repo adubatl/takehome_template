@@ -27,17 +27,17 @@ Each sub-branch is designed to be **composable via merge**.
 
 Each framework supports these core commands:
 ```bash
-just dev:<framework>     # Start development server
-just docker:<framework>  # Run in Docker
-just install:<framework> # Install dependencies
-just start:<framework>   # Quick start: install + dev
+just dev <framework>     # Start development server
+just docker <framework>  # Run in Docker
+just install <framework> # Install dependencies
+just start <framework>   # Quick start: install + dev
 ```
 
 For example:
 ```bash
-just dev:node      # Start Node.js server
-just docker:react  # Run React app in Docker
-just start:django  # Install and start Django
+just dev node      # Start Node.js server
+just docker react  # Run React app in Docker
+just start django  # Install and start Django
 ```
 
 ### 🔍 Examples
@@ -48,11 +48,11 @@ just start:django  # Install and start Django
   ```bash
   # Add React frontend
   just add react
-  just start:react
+  just start react
   
   # Add Node.js backend
   just add node
-  just start:node
+  just start node
   ```
 
 - For full-stack applications, compose multiple branches:
@@ -60,8 +60,8 @@ just start:django  # Install and start Django
   # React frontend + Node.js backend
   just add react
   just add node
-  just start:react  # Start frontend
-  just start:node   # Start backend
+  just start react  # Start frontend
+  just start node   # Start backend
   ```
 
 - For backend-focused or database-heavy takehomes:
@@ -69,21 +69,21 @@ just start:django  # Install and start Django
   # Node.js + Database setup
   just add node
   just add db
-  just start:node
-  just start:db
+  just start node
+  just start db
   ```
 
 ## 🌿 Available Branches
 
 | Branch | Description | Commands |
 |--------|-------------|----------|
-| `main → react` | Scaffolded with a basic React app | `just *:react` |
-| `main → vue` | Scaffolded with a basic Vue app | `just *:vue` |
-| `main → go` | Scaffolded with a basic Go app | `just *:go` |
-| `main → django` | Scaffolded with a basic Django app | `just *:django` |
-| `main → node` | Scaffolded with a basic Node.js app | `just *:node` |
-| `main → postgres` | Scaffolded with a basic PostgreSQL database | `just *:postgres` |
-| `main → mongo` | Scaffolded with a basic MongoDB database | `just *:mongo` |
-| `main → LLM` | Scaffolded with a basic LLM app | `just *:llm` |
+| `main → react` | Scaffolded with a basic React app | `just * react` |
+| `main → vue` | Scaffolded with a basic Vue app | `just * vue` |
+| `main → go` | Scaffolded with a basic Go app | `just * go` |
+| `main → django` | Scaffolded with a basic Django app | `just * django` |
+| `main → node` | Scaffolded with a basic Node.js app | `just * node` |
+| `main → postgres` | Scaffolded with a basic PostgreSQL database | `just * postgres` |
+| `main → mongo` | Scaffolded with a basic MongoDB database | `just * mongo` |
+| `main → LLM` | Scaffolded with a basic LLM app | `just * llm` |
 
 
